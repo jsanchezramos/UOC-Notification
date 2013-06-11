@@ -1,186 +1,192 @@
-# Cordova Push Server
+# Push Server
 
-Cordova Push Server is a cross-plateform push server based on [node-apn](https://github.com/argon/node-apn) and [node-gcm](https://github.com/ToothlessGear/node-gcm). Cordova Push Server currently supports iOS (APN) and android (GCM) platforms.
-
-Cordova Push Server can be called in shell:
-
-```shell
-$ cordovapush
-```
-
-Or in a JavaScript application:
-
-```js
-var cordovapush = require('cordovapush');
-```
+Push Server is a cross-plateform push server based on [node-apn](https://github.com/argon/node-apn) and [node-gcm](https://github.com/ToothlessGear/node-gcm). Cordova Push Server currently supports iOS (APN) and android (GCM) platforms. It uses mongoDB to store the push tokens. 
+Note that this server is not meant to be used as a front facing server as there's no particular security implemented.
 
 
-## Documentation
+## Getting started
 
-The documentation is [here](https://github.com/Smile-SA/cordovapush-server/tree/master/docs#table-of-contents).
+### 1 - Database
 
-## Quick start
+node-pushserver uses mongodb to store the user / token associations. So you need to have a Mongo database setup beforehand
 
-### Pre-requisite
+See MongoDB ([MongoDB Download page](http://www.mongodb.org/downloads)).
 
-+ MongoDB ([MongoDB Download page](http://www.mongodb.org/downloads)).
 
-Start MongoDB:
+### 2 - Install node-pushserver
++ From npm directly:
 
 ```shell
-$ sudo mongod
+$ npm install node-pushserver -g
 ```
 
-### Install & Start
++ From git:
 
 ```shell
-$ npm install -g cordovapush
-$ cordovapush new [server_name]
-$ cd [server_name]
-$ cordovapush start
+$ git clone git://github.com/Smile-SA/cordovapush-server.git
+$ cd cordovapush-server
+$ npm install -g
 ```
 
+### 3 - Configuration
 
-### Configuration
+If you checked out this project from github, you can find a configuration file example named 'example.config.json'.
 
-#### Android
-
-GCM service configuration:
 
 ```js
 {
-	sender : 'api_key'                                 /* Your API Key */
+	"webPort": 8000,
+
+    "mongodbUrl": "mongodb://username:password@localhost/database",
+
+    "gcm": {
+        "apiKey": "YOUR_API_KEY_HERE"
+    },
+
+    "apn": {
+        "connection": {
+            "gateway": "gateway.sandbox.push.apple.com",
+            "cert": "/path/to/cert.pem",
+            "key": "/path/to/key.pem"
+        },
+        "feedback": {
+            "address": "feedback.sandbox.push.apple.com",
+            "cert": "/path/to/cert.pem",
+            "key": "/path/to/key.pem",
+            "interval": 43200,
+            "batchFeedback": true
+        }
+    }
 }
+
 ```
 
-See [GCM documentation](http://developer.android.com/guide/google/gcm/gs.html).
++ Checkout [GCM documentation](http://developer.android.com/guide/google/gcm/gs.html) to get your API key.
 
-#### iOS
++  Read [Apple's Notification guide](https://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html) to know how to get your certificates for APN.
 
-APN service configuration:
++ Please refer to node-apn's [documentation](https://github.com/argon/node-apn) to see all the available parameters and find how to convert your certificates into the expected format. 
 
-```js
+
+### 4 - Start server
+
+```shell
+$ pushserver -c /path/to/config.json
+```
+
+### 5 - Enjoy!
+
+
+
+## Usage
+### Web Interface
+You can easily send push messages using the web interface available at `http://domain:port/`.
+
+### Web API
+
+#### Send a push
+```
+http://domain:port/send (POST)
+```
++ The content-type must be 'application/json'.
++ Format : 
+
+```json
 {
-	cert: 'absolute/path/to/the/cordovapush.pem',      /* Certificate file path */
-	key:  'absolute/path/to/the/cordovapushkey.pem',   /* Key file path */
-	passphrase: '****',                                /* Passphrase for the Key file */
-	gateway: 'gateway.sandbox.push.apple.com',         /* Gateway address */
-	port: 2195,                                        /* Gateway port */
-	enhanced: true,                                    /* Enable enhanced format */
-	cacheLength: 100                                   /* Number of notifications to cache */
+  "users": ["user1"],
+  "android": {
+    "collapseKey": "optional",
+    "data": {
+      "message": "You message here"
+    }
+  },
+  "ios": {
+    "badge": 0,
+    "alert": "You message here",
+    "sound": "soundName"
+  }
 }
 ```
 
-See [node-apn documentation](https://github.com/argon/node-apn#connecting).
++ "users" is optionnal, but must be an array if set. If not defined, the push message will be send to every user (filtered by target).
++ You can send push messages to Android or iOS devices, or both, by using the "android" and "ios" fields with appropriate options. See GCM and APN documentation to find the available options. 
 
-#### Web
-
-Web server configuration:
-
-```js
-{
-	port : 8080,                                       /* Listening port */
-	debug : true                                       /* Active logging request mode */
-}
-```
-
-#### Mongo
-
-MongoDB configuration:
-
-```js
-{
-	url : 'mongodb://localhost/cordova'                /* MongoDB URL */
-}
-```
-
-### Usage
-
-#### Sending interface
-
-```
-http://domain:port/send (GET & POST)
-```
 
 #### Subscribe
-
 ```
 http://domain:port/subscribe (POST)
 ```
-
-or
-
-
-```
-http://domain:port/save (POST)
-```
-
-data:
-
++ The content-type must be 'application/json'.
++ Format:
 ```js
 {
-	type : device_type (android || ios),
-	token : device_token
+  "user":"user1",
+  "type":"android",
+  "token":"CAFEBABE"
 }
 ```
++ All field are required
++ "type" can be either "android" or "ios"
++ A user can be linked to several devices and a device can be linked to serveral users.
 
 #### Unsubscribe
-
 ```
 http://domain:port/unsubscribe (POST)
 ```
-
-or
-
-
-```
-http://domain:port/clean (POST)
-```
-
-data:
-
++ The content-type must be 'application/json'.
++ Format:
 ```js
 {
-	type : device_type (android || ios),
-	token : device_token
+  "token":"CAFEBABE"
+}
+// or 
+{
+  "user":"user1"
 }
 ```
 
-#### Alias
++ You can unsubscribe either a particular device, or all the devices for one user
 
+#### List Users
 ```
-http://domain:port/alias (POST)
+http://domain:port/users (GET)
 ```
-
-data:
-
++ Response format: 
 ```js
 {
-	type : device_type (android || ios),
-	token : device_token,
-	alias : alias_name
+    "users": [
+        "vilem"
+    ]
 }
 ```
 
-### Commands
+#### List user's associations
+```
+http://domain:port/users/{user}/associations (GET)
+```
++ Response format
 
-#### new
+```js
+{
+    "associations": [
+        {
+            "user": "vilem",
+            "type": "ios",
+            "token": "06176b81450fc50fb3e26e513083b4142d7af3de5db7d9a4c557bb36a8d1d225"
+        }
+    ]
+}
+```
 
-Create a new server directory.
-
-#### start
-
-Start server from current directory.
 
 ## Dependencies
 
-  * [commander](https://github.com/visionmedia/commander.js)
-  * [express](https://github.com/visionmedia/express)
   * [node-apn](https://github.com/argon/node-apn)
   * [node-gcm](https://github.com/ToothlessGear/node-gcm)
+  * [express](https://github.com/visionmedia/express)
   * [mongoose](https://github.com/LearnBoost/mongoose)
-  * [underscore](https://github.com/documentcloud/underscore)
-  * [wrench](https://github.com/ryanmcgrath/wrench-js)
+  * [lodash](https://github.com/bestiejs/lodash.git )
+  * [commander](https://github.com/visionmedia/commander.js)
 
 ## Tags
 [Cordovapush tags](https://github.com/Smile-SA/cordovapush-server/tags).

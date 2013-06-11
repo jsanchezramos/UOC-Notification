@@ -1,9 +1,0 @@
-{
-    "cert": "absolute/path/to/ressources/certificat/cordovapush.pem",
-    "key":  "absolute/path/to/ressources/certificat/cordovapushkey.pem",
-    "passphrase": "***",
-    "gateway": "gateway.sandbox.push.apple.com",
-    "port": 2195,
-    "enhanced": true,
-    "cacheLength": 100
-}
