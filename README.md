@@ -1,6 +1,6 @@
 # Push Server
 
-Push Server is a cross-plateform push server based on [node-apn](https://github.com/argon/node-apn) and [node-gcm](https://github.com/ToothlessGear/node-gcm). Cordova Push Server currently supports iOS (APN) and android (GCM) platforms. It uses mongoDB to store the push tokens. 
+Push Server is a cross-plateform push server based on [node-apn](https://github.com/argon/node-apn) and [node-gcm](https://github.com/ToothlessGear/node-gcm). Push Server currently supports iOS (APN) and android (GCM) platforms. It uses mongoDB to store the push tokens. 
 Note that this server is not meant to be used as a front facing server as there's no particular security implemented.
 
 
@@ -23,8 +23,8 @@ $ npm install node-pushserver -g
 + From git:
 
 ```shell
-$ git clone git://github.com/Smile-SA/cordovapush-server.git
-$ cd cordovapush-server
+$ git clone git://github.com/Smile-SA/node-pushserver.git
+$ cd node-pushserver
 $ npm install -g
 ```
 
@@ -189,11 +189,11 @@ http://domain:port/users/{user}/associations (GET)
   * [commander](https://github.com/visionmedia/commander.js)
 
 ## Tags
-[Cordovapush tags](https://github.com/Smile-SA/cordovapush-server/tags).
+[node-pushserver tags](https://github.com/Smile-SA/node-pushserver/tags).
 
 ## History/Changelog
 
-Take a look at the [history](https://github.com/Smile-SA/cordovapush-server/blob/master/HISTORY.md#history).
+Take a look at the [history](https://github.com/Smile-SA/node-pushserver/blob/master/HISTORY.md#history).
 
 ## License
 

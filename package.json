@@ -21,12 +21,12 @@
   },
   "main": "./lib/PushController.js",
   "scripts": {
-    "start": "node ./bin/mobilepush.js",
+"start": "node ./bin/pushserver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/smile-mobile/cordovapush-server.git"
+    "url": "git://github.com/smile-mobile/node-pushserver.git"
   },
-  "bugs": "https://github.com/smile-mobile/cordovapush-server/issues"
+  "bugs": "https://github.com/smile-mobile/node-pushserver/issues"
 }
