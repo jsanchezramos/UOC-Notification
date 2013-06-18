@@ -17,7 +17,7 @@
     "commander": "~1.2.0"
   },
   "bin": {
-    "pushserver": "./bin/mobilepush.js"
+    "pushserver": "./bin/pushserver.js"
   },
   "main": "./lib/PushController.js",
   "scripts": {
