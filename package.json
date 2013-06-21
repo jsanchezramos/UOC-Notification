@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/smile-mobile/node-pushserver.git"
+    "url": "git://github.com/Smile-SA/node-pushserver.git"
   },
-  "bugs": "https://github.com/smile-mobile/node-pushserver/issues"
+  "bugs": "https://github.com/Smile-SA/node-pushserver/issues"
 }
