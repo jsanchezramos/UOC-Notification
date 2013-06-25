@@ -97,19 +97,54 @@ http://domain:port/send (POST)
   "android": {
     "collapseKey": "optional",
     "data": {
-      "message": "You message here"
+      "message": "Your message here"
     }
   },
   "ios": {
     "badge": 0,
-    "alert": "You message here",
+    "alert": "Your message here",
     "sound": "soundName"
   }
 }
 ```
 
-+ "users" is optionnal, but must be an array if set. If not defined, the push message will be send to every user (filtered by target).
++ "users" is optionnal, but must be an array if set. If not defined, the push message will be sent to every user (filtered by target).
 + You can send push messages to Android or iOS devices, or both, by using the "android" and "ios" fields with appropriate options. See GCM and APN documentation to find the available options. 
+
+#### Send push notifications
+```
+http://domain:port/sendBatch (POST)
+```
++ The content-type must be 'application/json'.
++ Format : 
+
+```json
+{
+  "notifications": [{
+      "users": ["user1", "user2"],
+      "android": {
+        "collapseKey": "optional",
+        "data": {
+          "message": "Your message here"
+        }
+      },
+      "ios": {
+        "badge": 0,
+        "alert": "Foo bar",
+        "sound": "soundName"
+      }
+    },{
+      "users": ["user4"],
+      "android": {
+        "collapseKey": "optional",
+        "data": {
+          "message": "Your other message here"
+        }
+      }
+    }
+  ]
+}
+```
 
 
 #### Subscribe
@@ -139,7 +174,9 @@ http://domain:port/unsubscribe (POST)
 {
   "token":"CAFEBABE"
 }
-// or 
+```
+or
+```js
 {
   "user":"user1"
 }
@@ -172,7 +209,7 @@ http://domain:port/users/{user}/associations (GET)
         {
             "user": "vilem",
             "type": "ios",
-            "token": "06176b81450fc50fb3e26e513083b4142d7af3de5db7d9a4c557bb36a8d1d225"
+            "token": "06546b81450fc50fb3e26e513081f54642d7af3dedb57d9a4c557cc36a81dd252"
         }
     ]
 }
