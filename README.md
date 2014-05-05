@@ -10,12 +10,7 @@ Fork to https://github.com/Smile-SA/node-pushserver.
 See MongoDB ([MongoDB Download page](http://www.mongodb.org/downloads)).
 
 
-### 2 - Install node-pushserver
-+ From npm directly:
-
-```shell
-$ npm install node-pushserver -g
-```
+### 2 - Install service push
 
 + From git:
 
