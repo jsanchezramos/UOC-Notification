@@ -1,4 +1,4 @@
-# Push Server
+# UOC Notification
 
 Fork to https://github.com/Smile-SA/node-pushserver.
 
