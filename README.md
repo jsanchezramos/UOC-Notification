@@ -1,15 +1,11 @@
 # Push Server
 
-Push Server is a cross-plateform push server based on [node-apn](https://github.com/argon/node-apn) and [node-gcm](https://github.com/ToothlessGear/node-gcm). Push Server currently supports iOS (APN) and android (GCM) platforms. It uses mongoDB to store the push tokens. 
-Note that this server is not meant to be used as a front facing server as there's no particular security implemented.
-
-[![NPM](https://nodei.co/npm/node-pushserver.png?downloads=true&stars=true)](https://nodei.co/npm/node-pushserver/)
+Fork to https://github.com/Smile-SA/node-pushserver.
 
 ## Getting started
 
 ### 1 - Database
 
-node-pushserver uses mongodb to store the user / token associations. So you need to have a Mongo database setup beforehand
 
 See MongoDB ([MongoDB Download page](http://www.mongodb.org/downloads)).
 
