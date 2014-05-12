@@ -228,7 +228,7 @@ Take a look at the [history](https://github.com/Smile-SA/node-pushserver/blob/ma
 
 MIT :
 
-Copyright (C) 2012 Smile Mobile Team
+Copyright (C) 2014 Universitat Oberta de Catalunya
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
