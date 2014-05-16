@@ -17,7 +17,7 @@
     "commander": "~1.2.0"
   },
   "bin": {
-    "pushserver": "./bin/pushserver.js"
+    "uocnotification": "./bin/uocnotification.js"
   },
   "main": "./lib/PushController.js",
   "scripts": {
