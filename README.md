@@ -15,8 +15,8 @@ See MongoDB ([MongoDB Download page](http://www.mongodb.org/downloads)).
 + From git:
 
 ```shell
-$ git clone git://github.com/Smile-SA/node-pushserver.git
-$ cd node-pushserver
+$ git clone git://github.com/jsanchezramos/UOC-Notification
+$ cd UOC-Notification
 $ npm install 
 ```
 
