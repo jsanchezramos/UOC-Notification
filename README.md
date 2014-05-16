@@ -149,7 +149,8 @@ http://domain:port/subscribe (POST)
 {
   "user":"user1",
   "type":"android",
-  "token":"CAFEBABE"
+  "token":"CAFEBABE",
+  "appId":"ID TO APP"
 }
 ```
 + All field are required
