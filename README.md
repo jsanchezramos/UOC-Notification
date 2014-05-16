@@ -17,7 +17,7 @@ See MongoDB ([MongoDB Download page](http://www.mongodb.org/downloads)).
 ```shell
 $ git clone git://github.com/Smile-SA/node-pushserver.git
 $ cd node-pushserver
-$ npm install -g
+$ npm install 
 ```
 
 ### 3 - Configuration
@@ -63,7 +63,7 @@ If you checked out this project from github, you can find a configuration file e
 ### 4 - Start server
 
 ```shell
-$ pushserver -c /path/to/config.json
+$ node bin/uocnotification.js -c config.json 
 ```
 
 ### 5 - Enjoy!
