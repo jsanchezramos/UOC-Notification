@@ -223,7 +223,7 @@ http://domain:port/users/{user}/associations (GET)
 
 ## History/Changelog
 
-Take a look at the [history](https://github.com/jsanchezramos/UOC-Notification/HISTORY.md#history).
+Take a look at the [history](https://github.com/jsanchezramos/UOC-Notification/blob/master/HISTORY.md).
 
 ## License
 
