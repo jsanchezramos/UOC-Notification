@@ -103,6 +103,35 @@ http://domain:port/send (POST)
 + "users" is optionnal, but must be an array if set. If not defined, the push message will be sent to every user (filtered by target).
 + You can send push messages to Android or iOS devices, or both, by using the "android" and "ios" fields with appropriate options. See GCM and APN documentation to find the available options. 
 
+
+#### Send a push to appId
+```
+http://domain:port/send (POST)
+```
++ The content-type must be 'application/json'.
++ Format : 
+
+```json
+{
+  "users": ["user1"],
+  "appId": ["appId"],
+  "android": {
+    "collapseKey": "optional",
+    "data": {
+      "message": "Your message here"
+    }
+  },
+  "ios": {
+    "badge": 0,
+    "alert": "Your message here",
+    "sound": "soundName"
+  }
+}
+```
+
++ "users" is optionnal, but must be an array if set. If not defined, the push message will be sent to every user to appId associaton (filtered by target).
++ You can send push messages to Android or iOS devices, or both, by using the "android" and "ios" fields with appropriate options. See GCM and APN documentation to find the available options. 
+
 #### Send push notifications
 ```
 http://domain:port/sendBatch (POST)
