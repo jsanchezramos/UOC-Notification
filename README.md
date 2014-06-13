@@ -248,7 +248,7 @@ http://domain:port/users/{user}/associations (GET)
   * [commander](https://github.com/visionmedia/commander.js)
 
 ## Tags
-[node-pushserver tags](https://github.com/Smile-SA/node-pushserver/tags).
+[UOC Notification tags](https://github.com/jsanchezramos/UOC-Notification/tags).
 
 ## History/Changelog
 
