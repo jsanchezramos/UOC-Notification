@@ -167,6 +167,28 @@ http://domain:port/sendBatch (POST)
 }
 ```
 
+#### new appId
+```
+http://domain:port/appId/add (POST)
+```
++ The content-type must be 'application/json'.
++ Format:
+```js
+{
+  "appId":"appAula",
+  "gcm":"api key google",
+  "cet":"cert path",
+  "key":"key path"
+}
+```
++ All field are required
++ Add new appId to use gcm & apn certs
+
+#### delete appId
+```
+http://domain:port/appId/:idApp (DELETE)
+```
++ Delete appId 
 
 #### Subscribe
 ```
