@@ -190,6 +190,67 @@ http://domain:port/appId/:idApp (DELETE)
 ```
 + Delete appId 
 
+#### update appId gcm
+```
+http://domain:port/appId/updateGCM (POST)
+```
++ The content-type must be 'application/json'.
++ Format:
+```js
+{
+  "appId":"appAula",
+  "gcm":"api key google"
+}
+```
++ All field are required
++ Add new appId to use gcm to update
+
+#### update appId apn
+```
+http://domain:port/appId/updateAPN (POST)
+```
++ The content-type must be 'application/json'.
++ Format:
+```js
+{
+  "appId":"appAula",
+  "cert":"cert.pem",
+  "key":"key.pem"
+}
+```
++ All field are required
++ Add new appId to use apn(key,cert) to update
+
+#### List appIds
+```
+http://domain:port/appIds (GET)
+```
++ Response format: 
+```js
+{
+    "appIds": [
+        "AulaApp"
+    ]
+}
+```
+
+#### get info appId
+```
+http://domain:port/appId/{appId} (GET)
+```
++ Response format
+
+```js
+{
+    {
+        "appId": "AulaAPP",
+        "gcm":"api key google",
+        "cet":"cert path",
+        "key":"key path"
+    }
+}
+```
+
 #### Subscribe
 ```
 http://domain:port/subscribe (POST)
