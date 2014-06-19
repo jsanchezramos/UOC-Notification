@@ -242,12 +242,14 @@ http://domain:port/appId/{appId} (GET)
 
 ```js
 {
-    {
-        "appId": "AulaAPP",
-        "gcm":"api key google",
-        "cet":"cert path",
-        "key":"key path"
-    }
+    "appId": [
+        {
+            "appId": "AulaAPP",
+            "gcm":"api key google",
+            "cet":"cert path",
+            "key":"key path"
+        }
+    ]
 }
 ```
 
