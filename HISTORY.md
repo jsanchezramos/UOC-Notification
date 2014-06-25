@@ -1,4 +1,5 @@
 ## History
+- 1.0.0 : Only send push to appId association.
 - 0.6.0 : added multi project to send push
 - 0.5.2 : added sendBatch API method
 - 0.5.0 : refactored nearly from scratch. new everything.
